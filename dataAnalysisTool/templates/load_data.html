@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Load Data</title>
+</head>
+<body>
+<h1>Load Data</h1>
+load_data_view
+
+<form method="post" enctype="multipart/form-data">{% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Upload</button>
+</form>
+
+  <p><a href="{% url 'home' %}">Return to home</a></p>
+
+</body>
+</html>

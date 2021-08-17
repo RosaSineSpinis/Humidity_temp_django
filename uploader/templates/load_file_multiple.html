@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>File Uploader</title>
+</head>
+<body>
+<!-- List of uploaded documents -->
+<h1>BODY</h1>
+    {% if documents %}
+        <ul>
+        {% for document in documents %}
+            <li><a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No documents.</p>
+    {% endif %}
+    <!-- Upload form. Note enctype attribute! -->
+    <form action="{% url 'uploader:multiple_load' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% comment %}
+        <input type="file" multiple name="files" id>
+        {% endcomment %}
+
+        {{ form.as_p }}
+
+        <p><input type="submit" value="Upload" /></p>
+    </form>
+</body>
+</html>
+

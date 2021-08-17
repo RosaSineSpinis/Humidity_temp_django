@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<!--  <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.4.0/chart.js"></script>-->
+<!--&lt;!&ndash;  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.4.1/chart.js"></script>&ndash;&gt;-->
+<!--&lt;!&ndash;  <script src="https://cdnjs.com/libraries/moment.js"></script>&ndash;&gt;-->
+<!--  <script src="https://cdnjs.com/libraries/chartjs-adapter-moment"></script>-->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@0.1.1"></script>
+<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>-->
+<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.4.0/chart.min.js"></script>-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <title>My Chart.js Chart</title>
+  </head>
+  <body>
+    <div>
+      <canvas id="myChart" width="600" height="400">Your browser does not support Html5</canvas>
+      <canvas id="myChart1" width="600" height="400">Your browser does not support Html5</canvas>
+      <canvas id="myChart2" width="600" height="400">Your browser does not support Html5</canvas>
+      <canvas id="myChart3" width="600" height="400">Your browser does not support Html5</canvas>
+      <canvas id="myChart4" width="600" height="400">Your browser does not support Html5</canvas>
+    </div>
+
+  Hello World
+
+  </body>
+</html>
+
+
+<script type="module">
+
+  console.log(1111111111);
+  console.log(111111111111111111111111111111111111)
+
+  var data_series = [];
+  var request = new XMLHttpRequest();
+  request.responseType = 'json';
+  request.open('GET', '/dataAnalysisTool/charts/chart_data/', true);
+  request.onload = function() {
+    if (this.status >= 200 && this.status < 400) {
+      // Success!
+      var resp = this.response;
+
+      // console.log(resp)
+      // labels = labels.map(function(label) {
+      //   const temp = Date(label);
+      //   return new moment(temp).toDate();
+      // });
+      // var data = JSON.parse(this.response);
+      // console.log("data")
+      // console.log(data)
+
+      var data_series = resp.all_series;
+      // console.log(data_series)
+      // setChart(data_series)
+      var canvas_name = ['Chart1']
+      const datasets = []
+      for (var key of Object.keys(data_series)) {
+         console.log(key + " -> " + data_series[key].name)
+          //here create datasetes
+        datasets.push(
+                    {
+                      label:data_series[key].name,
+                      data:data_series[key].data,
+                      backgroundColor:data_series[key].color,
+                      borderColor:data_series[key].color,
+                      borderWidth: 1
+                    })
+        //do list of canvas names here, pull up ctx_list definition
+        // ctx_list.push(document.getElementById('myChart1'))
+        //
+      }
+      //plot one graph with many series
+      var ctx = document.getElementById('myChart')
+      setChart(datasets, ctx)
+
+      var canvas_name = ['myChart1', 'myChart2', 'myChart3', 'myChart4']
+      var ctx_list = [document.getElementById('myChart1'), document.getElementById('myChart2'),
+        document.getElementById('myChart3'), document.getElementById('myChart4')]
+
+      for(let i=0; i<datasets.length; i++){ //plot many graphs
+        let ctx = document.getElementById(canvas_name[i]);
+        setChart([datasets[i]], ctx)
+      }
+
+    } else {
+      // We reached our target server, but it returned an error
+    }
+  };
+
+request.send();
+
+
+// [
+// {
+//     label: 'H4',
+//     data: data_xy_django,
+//     backgroundColor: [
+//         'rgba(255, 99, 132, 0.2)',
+//     ],
+//     borderColor: [
+//         'rgba(255, 99, 132, 1)',
+//     ],
+//     borderWidth: 1
+// }
+// ]
+
+
+  // request.send(null);
+
+  // for(let idx = 0; idx < data_series.length; idx++){
+
+  var p = {
+    0: "value1",
+    "b": "value2",
+    key: "value3"
+};
+
+
+
+  // for (const val of data_series){
+  //   console.log(val);
+  // }
+
+  // import { TimeScale, TimeSeriesScale } from 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.4.1/chart.esm.js';
+
+  // Chart.register(
+  //         TimeScale,
+  //         TimeSeriesScale
+  // )
+  //   var data_xy = [
+  //     {x: new Date(86400000), y:1},// Day 1
+  //     {x:new Date(1.2 * 86400000), y:3}, // Day 2
+  //     {x: new Date(2 * 86400000), y: 4},// Day 3
+  //     {x: new Date(3 * 86400000), y: 5},// Day 4
+  //     {x: new Date(4 * 86400000), y: 6},// Day 6
+  //     {x: new Date(5 * 86400000), y: 7},// Day 7
+  //     {x: new Date(600 * 86400000), y: 8}// Day 13
+  //   ]
+
+  function setChart(data, ctx){
+
+    // var ctx = document.getElementById('myChart');
+    // console.log(ctx.height)
+    var myChart =  new Chart(ctx, {
+        type: 'scatter',
+        data: {
+            labels: [],  //labels
+            datasets: data
+            //         [
+            //         {
+            //     label: 'H4',
+            //     data: data_xy,
+            //     backgroundColor: [
+            //         'rgba(255, 99, 132, 0.2)',
+            //     ],
+            //     borderColor: [
+            //         'rgba(255, 99, 132, 1)',
+            //     ],
+            //     borderWidth: 1
+            // }]
+        },
+        options: {
+            responsive: false,
+            // maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true
+                },
+              x:{
+                  type: 'time',
+                  time: {
+                    // unit: 'hour',
+                    displayFormats: {
+                        hour: 'H a Do'
+                    }
+                  },
+              }
+            }
+        }
+    });
+
+  }
+
+</script>
+
+<script>
+
+  document.body.addEventListener( 'click', function (event) {
+    if( event.target.className === 'form-check-input dataset' ) {
+        const form = event.target.form;
+        const data = new FormData(form);
+
+        const request = new XMLHttpRequest();
+        request.open(form.method, form.action, true);
+        request.send(data);
+
+        request.addEventListener("load", function () {
+            if (this.readyState === 4 && this.status === 200) {
+
+                // catch JsonResponse from Django
+                const response = JSON.parse(this.responseText);
+
+                // display message
+                // const messages = document.getElementById("messages-list");
+                // messages.innerHTML += response.msg;
+                // fade_alerts();
+
+                // load content
+                const element = document.getElementById("demographics-content");
+                const section = element.parentNode;
+                section.removeChild(element);
+                section.innerHTML = response.demographics;
+
+                // extract variables for charts
+                // const label = response.label;
+                // const [users_l, users_v, users_c] = response.doughnut;
+                // const [hashtag_l, hashtag_v, hashtag_c] = response.hashtag;
+                // const creation = response.creation;
+                // const [text_l, text_v, text_c] = response.words;
+                // const [tfidf_l, tfidf_v, tfidf_c] = response.tfidf;
+                //
+                // [usersDoughnut, hashtagBar, creationTime, textBar, tfidfBar] = returnCharts(label, users_l, users_v, users_c, hashtag_l, hashtag_v, hashtag_c, creation, text_l, text_v, text_c, tfidf_l, tfidf_v, tfidf_c);
+                // showCharts(usersDoughnut, hashtagBar, creationTime, textBar, tfidfBar);
+            }
+        });
+    }
+});
+
+</script>

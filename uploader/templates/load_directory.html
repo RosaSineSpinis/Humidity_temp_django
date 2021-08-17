@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Load directory</title>
+</head>
+<body>
+
+<h1>BODY</h1>
+    {% if documents %}
+        <ul>
+        {% for document in documents %}
+            <li><a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No documents.</p>
+    {% endif %}
+
+    <!-- Upload form. Note enctype attribute! -->
+    <form action="{% url 'uploader:directory_load' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {% comment %}
+        <input type="file" id="directory" multiple webkitdirectory="" directory="" name="files">
+
+        {{ form.as_p }}
+        <p><input type="submit" value="Upload" /></p>
+        {% endcomment %}
+
+        <input type="file" name="directory" id="files" multiple="" directory="" webkitdirectory="" mozdirectory="">
+        <input class="button" type="submit" value="Upload" />
+
+
+    </form>
+</body>
+</html>

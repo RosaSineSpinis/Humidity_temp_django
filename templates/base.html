@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Piotr coding</title>
+    <link href="{% static 'products/main.css' %}" rel="stylesheet" type="text/css" />
+
+<!--    <link href="{{ STATIC_URL }}main.css" rel="stylesheet" type="text/css" />-->
+
+</head>
+<body>
+    {{ STATIC_URL }}main.css
+{% comment %}
+    {% include 'navbar.html' %}
+{% endcomment %}
+    <p> Text from base</p>
+    <div class="box_list">
+        {% block content %}
+        This text will be replaced
+        {% endblock %}
+    </div>
+    {% block content2 %}
+    {% endblock %}
+
+    {% block content3 %}
+    {% endblock %}
+
+</body>
+</html>

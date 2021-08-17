@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>File Uploader</title>
+</head>
+<body>
+<!-- List of uploaded documents -->
+<h1>BODY</h1>
+    {% if documents %}
+        <ul>
+        {% for document in documents %}
+            <li><a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No documents.</p>
+    {% endif %}
+
+    <!-- Upload form. Note enctype attribute! -->
+    <form action="{% url 'uploader:list' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>{{ form.non_field_errors }}</p>
+        <p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>
+        <p>
+            {{ form.docfile.errors }}
+            {{ form.docfile }}
+        </p>
+        <p><input type="submit" value="Upload" /></p>
+    </form>
+</body>
+</html>
