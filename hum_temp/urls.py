@@ -39,7 +39,6 @@ urlpatterns = [
     path('load/', list_view, name='menu'),
     path('uploader/', include('uploader.urls')),
     path('dataAnalysisTool/', include('dataAnalysisTool.urls')),
-    path('plotter/', include('plotter.urls')),
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

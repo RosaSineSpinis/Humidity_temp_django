@@ -102,7 +102,6 @@ def _my_view(request):
     blah = request.FILES[0].name
 
 
-
 def directory_load_view(request):
     """Function responsible for loading whole directory of files"""
     # Handle file

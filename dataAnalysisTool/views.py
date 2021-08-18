@@ -62,6 +62,7 @@ import json
 
 
 def simple(request):
+    ''' example function with matlib'''
     df = ProcessDataFromDjango.process_data()
 
     fig = Figure()
@@ -94,10 +95,12 @@ def plot_matlibplot_all(request):
     canvas.print_png(response)
     return response
 
+
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import authentication, permissions
 from django.contrib.auth.models import User
+
 
 class Plot_chart_js(APIView):
     """
@@ -174,6 +177,7 @@ class HomeView(View):
 
     def get(self, request, *args, **kwargs):
         return render(request, 'chart_js_linear.html', {})
+
 
 def show_menu(request):
 

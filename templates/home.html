@@ -1,14 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1> Hello world </h1>
 
-<p>This is a template</p>
+<div class="container">
+
+    <div class="bg-light p-5 rounded">
+        <h1>Program plotting Humidity and Temperature</h1>
+        <p class="lead">
+            Program plots data in Chart_js and Matplotlib. If you have WILPO data, please open the whole directory.
+            Program will scan and find all relevant files. Merge them and create the most important data.
+            If you do not have data, please choose sample data.
+        </p>
+        <div class="d-grid gap-5 d-flex justify-content-center mt-5">
+                <a class="btn btn-lg btn-primary btn-block" href="" role="button">Load sample data</a>
+                <a class="btn btn-lg btn-primary btn-block" href="" role="button">Load data</a>
+        </div>
+</div>
 {% endblock %}
 
 {% block content2 %}
-<h3> checking content2 </h3>
-
-<p>template home</p>
 {% endblock %}
 

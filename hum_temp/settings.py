@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'dataAnalysisTool',
     'pages',
     'uploader',
-    'plotter',
 
 ]
 
