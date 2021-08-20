@@ -19,7 +19,7 @@ urlpatterns = [
     # path('charts/chart_data/', Plot_chart_js.as_view(), name='plot_chart_js'),
     # charts/plot_chart_js/ is waiting to be linear - probably not really needed
     # path('charts/plot_chart_js/', HomeView.as_view(), name='plot_chart_js'),
-    path('charts/plot_charts/', ShowChart.as_view(), name='show_menu'),
+    path('charts/plot_charts/', ShowChart.as_view(), name='chart_js_allplots'),
 
 ]
 

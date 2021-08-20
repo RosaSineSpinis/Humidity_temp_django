@@ -15,28 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from pages.views import home_view, menu_view
 
 from django.conf import settings
 from django.conf.urls.static import static
 
-from uploader.views import(
-    list_view,
-)
-
-from uploader.views import(
-    list_view,
-)
-
-from dataAnalysisTool.views import(
-    simple,
-)
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/', home_view, name='home'),
-    path('menu/', menu_view, name='menu'),
-    path('load/', list_view, name='menu'),
+    path('', include('pages.urls')),
     path('uploader/', include('uploader.urls')),
     path('dataAnalysisTool/', include('dataAnalysisTool.urls')),
     ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
