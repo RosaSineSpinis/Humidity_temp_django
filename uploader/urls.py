@@ -15,3 +15,5 @@ urlpatterns = [
     path('load_multiple/', FileFieldFormView.as_view(), name='multiple_load'),
     path('load_directory/', directory_load_view, name='directory_load')
 ]
+
+# uploader/load_directory/

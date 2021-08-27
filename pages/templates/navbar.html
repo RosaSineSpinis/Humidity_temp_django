@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-expand-md navbar-light bg-light mb-4">
   <div class="container-fluid">
 
@@ -7,17 +8,17 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarCollapse">
+    <div class="collapse navbar-collapse" role="navigation" id="navbarCollapse">
 
       <ul class="navbar-nav mx-auto me-auto mb-2 mb-md-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+        <li class="nav-item" role="navigation">
+          <a class="nav-link" id="home-page" aria-current="page" href="{% url 'home' %}">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'about_program' %}">About the page</a>
+        <li class="nav-item" role="navigation">
+          <a class="nav-link" id="sample-page" aria-current="page" href="{% url 'dataAnalysisTool:chart_js_allplots' %}">Sample Plot</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'about_author' %}">Author</a>
+        <li class="nav-item" role="navigation">
+          <a class="nav-link" id="about-page" aria-current="page" href="{% url 'about_program' %}">About the page</a>
         </li>
 
         {% comment %}
@@ -31,3 +32,17 @@
     </div>
   </div>
 </nav>
+
+
+
+
+<script>
+  const currentLocation = location.href;
+  const menuItem = document.querySelectorAll('a');
+  const menuLength = menuItem.length;
+  for(let i = 0; i < menuLength; i++){
+    if(menuItem[i].href ===  currentLocation){
+      menuItem[i].className = "nav-link active"
+    }
+  }
+</script>

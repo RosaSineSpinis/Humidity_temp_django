@@ -1,5 +1,23 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
+
+<div class="container bg-light px-5 py-5">
+
+    <div class="m-5">
+        <p>
+        Humidity Plotter is a program that plots graphs of humidity and temperature at one series and many series
+        graphs. The program is designed to present data of different sectors in the factory.
+            The data are processed and merged together automatically.
+        A web application is only an addition to a  desktop application. The author, Piotr Mieczkowski.
+    </p>
+    </div>
+    <div class="d-flex justify-content-center align-items-center p-3">
+        <img src="{% static 'images/graph_sample.jpg' %}" class="img-fluid" alt="sample image">
+    </div>
+    <div class="d-flex justify-content-center align-items-center p-3">
+        <p class="fst-italic">Snapshot of the graph example.</p>
+    </div>
+</div>
 
 {% endblock %}

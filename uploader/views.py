@@ -8,7 +8,6 @@ from django.urls import reverse
 from .models import Document
 from .forms import DocumentForm
 
-
 def list_view(request):
     # Handle file
     message = 'Upload as many files as you want!'
@@ -128,11 +127,23 @@ def directory_load_view(request):
                 newdoc = Document(docfile=f)
                 newdoc.save()
 
-            return redirect('uploader:directory_load')
+            # return redirect('uploader:directory_load')
+            # return redirect('dataAnalysisTool:directory_load')
+            documents = Document.objects.all()
+            print("documents in POST", documents)
+            form = DirectoryFieldForm()
+            context = {'documents': documents, 'form': form, 'message': message}
+
+
         else:
             message = 'The form is not valid. Fix the following error:'
+
+        return render(request, "load_directory2.html", context)
+
     else:
+        print("GET??", request.method == 'GET')
         form = DirectoryFieldForm() # A empty, unbound form
+        Document.objects.all().delete()
 
     # Load documents for the list page
     documents = Document.objects.all()

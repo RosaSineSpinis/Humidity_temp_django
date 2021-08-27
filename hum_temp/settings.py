@@ -41,9 +41,9 @@ INSTALLED_APPS = [
     #added
     'rest_framework',
     #own
+    'uploader',
     'dataAnalysisTool',
     'pages',
-    'uploader',
 
 ]
 
@@ -128,6 +128,8 @@ USE_TZ = True
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
     os.path.join(BASE_DIR, 'uploader', 'static'),
+    os.path.join(BASE_DIR, 'pages', 'static'),
+
 )
 
 STATIC_URL = '/static/'

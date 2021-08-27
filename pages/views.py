@@ -18,6 +18,3 @@ def about_program_view(request, *args, **kwargs):
     return render(request, "about_program.html", context)
 
 
-def about_author_view(request, *args, **kwargs):
-    context = {}
-    return render(request, "about_author.html", context)

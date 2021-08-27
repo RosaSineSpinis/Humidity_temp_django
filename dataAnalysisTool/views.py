@@ -200,11 +200,13 @@ class ShowChart(APIView):
         :param request:
         :return: return data to plot in linear graph
         """
+        is_loaded_data = 1  # set parameter in post in template
 
         dataset_kind = request.POST.get('dataset')
         print(dataset_kind)
 
-        df_hum, df_temp = ProcessDataFromDjango.process_data()
+        df_hum, df_temp = ProcessDataFromDjango.process_data(is_loaded_data)
+
         if dataset_kind == "humidity":
             data_series = ProcessDataFromDjango.prepare_data_to_chart_js(df_hum) #returns dictionary
         else:
@@ -213,8 +215,25 @@ class ShowChart(APIView):
 
         return Response(data_series)
 
-
     def get(self, request, format=None):
 
         return render(request, 'chart_menu.html', {})
+
+
+class ShowChart_test(APIView):
+    """
+    View to list all users in the system.
+
+    * Requires token authentication.
+    * Only admin users are able to access this view.
+    """
+    authentication_classes = []
+    permission_classes = []
+
+
+
+    def get(self, request, format=None):
+        df_hum, df_temp = ProcessDataFromDjango.process_data()
+        data_series = ProcessDataFromDjango.prepare_data_to_chart_js(df_hum)  # returns dictionary
+        return Response(data_series)
 

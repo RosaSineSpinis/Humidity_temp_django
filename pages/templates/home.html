@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Home Humidity Plotter</title>
+{% endblock title %}
 
 {% block content %}
 
@@ -7,15 +12,20 @@
     <div class="bg-light p-5 rounded">
         <h1>Program plotting Humidity and Temperature</h1>
         <p class="lead">
-            Program plots data in Chart_js and Matplotlib. If you have WILPO data, please open the whole directory.
-            Program will scan and find all relevant files. Merge them and create the most important data.
+            Program plots data in Chart_js. Please, open the whole directory, when the WILPO data are available,
+            Program will scan and find all relevant files. Merge them and create one data table.
             If you do not have data, please choose sample data.
         </p>
         <div class="d-grid gap-5 d-flex justify-content-center mt-5">
                 <a class="btn btn-lg btn-primary btn-block" href="{% url 'dataAnalysisTool:chart_js_allplots' %}" role="button">Load sample data</a>
-                <a class="btn btn-lg btn-primary btn-block" href="" role="button">Load data</a>
+                <a class="btn btn-lg btn-primary btn-block" href="{% url 'uploader:directory_load' %}" role="button">Load data</a>
         </div>
-</div>
+
+        <div class="d-flex justify-content-center align-items-center p-5 m-5">
+        <img src="{% static 'images/graph_green.jpg' %}" class="img-fluid" alt="sample image">
+    </div>
+
+    </div>
 {% endblock %}
 
 {% block content2 %}
