@@ -1,0 +1,1 @@
+web: gunicorn humidity-plotter.wsgi --log-file -
