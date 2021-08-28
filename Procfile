@@ -1,1 +1,1 @@
-web: gunicorn humidity-plotter.wsgi --log-file -
+web: gunicorn hum_temp.wsgi --log-file -
