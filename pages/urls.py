@@ -18,8 +18,6 @@ from django.urls import path, include
 from pages.views import home_view, about_program_view
 from django.views.generic.base import RedirectView
 
-url(r'^$',),
-
 urlpatterns = [
     path('', RedirectView.as_view(url='/home/')),
     path('home/', home_view, name='home'),
