@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-c#)-)rpuxu8odd^4vzk&2==v8!key6ihuq1kw1+^u&+bn@6zaq
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['humidity-plotter.herokuapp.com', 'http://127.0.0.1:8000/']
 
 
 # Application definition
