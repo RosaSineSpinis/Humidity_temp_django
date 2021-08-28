@@ -14,6 +14,7 @@ django-picklefield==3.0.1
 django-taggit==1.5.0
 django-twitter-api==0.1.2
 djangorestframework==3.12.4
+gunicorn==20.1.0
 hashtag==0.1
 idna==2.10
 importlib-metadata==4.6.0
