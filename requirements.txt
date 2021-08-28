@@ -44,4 +44,5 @@ tqdm==4.61.1
 tweepy==3.10.0
 typing-extensions==3.10.0.0
 urllib3==1.26.5
+whitenoise==5.3.0
 zipp==3.4.1
